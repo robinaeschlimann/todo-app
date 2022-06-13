@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hftm.todo.controller.TodoController">
+    <children>
+        <BorderPane layoutX="191.0" layoutY="97.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <MenuBar BorderPane.alignment="CENTER">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Info">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#myInfo" text="About Me" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Exit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#exit" text="Close" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </top>
+         <center>
+            <TableView fx:id="todoList" onMouseClicked="#test" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="154.4000244140625" text="Bezeichnung" />
+                <TableColumn fx:id="descriptionColumn" prefWidth="368.0" text="Beschreibung" />
+                  <TableColumn fx:id="deadlineColumn" prefWidth="75.0" text="Deadline" />
+                  <TableColumn fx:id="personColumn" prefWidth="266.39996337890625" text="Zuständige Person" />
+                  <TableColumn fx:id="doneColumn" prefWidth="27.20001220703125" />
+                  <TableColumn fx:id="editColumn" prefWidth="75.0" />
+                  <TableColumn fx:id="deleteColumn" prefWidth="75.0" />
+              </columns>
+            </TableView>
+         </center>
+         <bottom>
+            <Button mnemonicParsing="false" onAction="#createTodo" text="Neu" BorderPane.alignment="CENTER" />
+         </bottom>
+        </BorderPane>
+    </children>
+</AnchorPane>
