@@ -23,21 +23,25 @@
                 </MenuBar>
             </top>
          <center>
-            <TableView fx:id="todoList" onMouseClicked="#test" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <columns>
-                <TableColumn fx:id="nameColumn" prefWidth="154.4000244140625" text="Bezeichnung" />
-                <TableColumn fx:id="descriptionColumn" prefWidth="368.0" text="Beschreibung" />
-                  <TableColumn fx:id="deadlineColumn" prefWidth="75.0" text="Deadline" />
-                  <TableColumn fx:id="personColumn" prefWidth="266.39996337890625" text="Zuständige Person" />
-                  <TableColumn fx:id="doneColumn" prefWidth="27.20001220703125" />
-                  <TableColumn fx:id="editColumn" prefWidth="75.0" />
-                  <TableColumn fx:id="deleteColumn" prefWidth="75.0" />
-              </columns>
-            </TableView>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <center>
+                  <TableView fx:id="todoList" onMouseClicked="#test" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn fx:id="nameColumn" prefWidth="154.4000244140625" text="Bezeichnung" />
+                      <TableColumn fx:id="descriptionColumn" prefWidth="368.0" text="Beschreibung" />
+                        <TableColumn fx:id="deadlineColumn" prefWidth="75.0" text="Deadline" />
+                        <TableColumn fx:id="personColumn" prefWidth="266.39996337890625" text="Zuständige Person" />
+                        <TableColumn fx:id="doneColumn" prefWidth="27.20001220703125" />
+                        <TableColumn fx:id="editColumn" prefWidth="75.0" />
+                        <TableColumn fx:id="deleteColumn" prefWidth="75.0" />
+                    </columns>
+                  </TableView>
+               </center>
+               <top>
+                  <Button mnemonicParsing="false" onAction="#createTodo" text="Neu" BorderPane.alignment="CENTER" />
+               </top>
+            </BorderPane>
          </center>
-         <bottom>
-            <Button mnemonicParsing="false" onAction="#createTodo" text="Neu" BorderPane.alignment="CENTER" />
-         </bottom>
         </BorderPane>
     </children>
 </AnchorPane>

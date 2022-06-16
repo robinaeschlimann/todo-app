@@ -10,16 +10,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Popup;
+import javafx.stage.Stage;
 import org.controlsfx.control.action.Action;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -83,29 +84,21 @@ public class TodoController implements Initializable
 
     public void myInfo(ActionEvent actionEvent)
     {
-        Label label = new Label("Version: 1.0");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Info");
+        alert.setHeaderText("ToDo-App");
+        alert.setContentText("Version 1.0");
 
-        // create a popup
-        Popup popup = new Popup();
-
-        // set background
-        label.setStyle(" -fx-background-color: white;");
-
-        // add the label
-        popup.getContent().add(label);
-
-        // set size of label
-        label.setMinWidth(80);
-        label.setMinHeight(50);
-
-        if ( !popup.isShowing() )
-        {
-            popup.show(TodoApp.getDefaultStage() );
-        }
+        alert.showAndWait();
     }
 
-    public void createTodo(ActionEvent actionEvent) {
-        showToDos();
+    public void createTodo(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(TodoApp.class.getResource("view/todo-form.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
+        Stage stage = new Stage();
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override
