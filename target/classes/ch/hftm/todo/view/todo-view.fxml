@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -35,6 +36,9 @@
                         <TableColumn fx:id="editColumn" prefWidth="75.0" />
                         <TableColumn fx:id="deleteColumn" prefWidth="75.0" />
                     </columns>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
                   </TableView>
                </center>
                <top>
