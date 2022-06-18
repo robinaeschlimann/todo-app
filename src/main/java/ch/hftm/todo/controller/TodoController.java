@@ -2,8 +2,12 @@ package ch.hftm.todo.controller;
 
 import ch.hftm.todo.TodoApp;
 import ch.hftm.todo.comparators.TodoComparator;
+import ch.hftm.todo.events.IEvent;
+import ch.hftm.todo.events.IListener;
+import ch.hftm.todo.events.TodoChangedEvent;
 import ch.hftm.todo.model.Todo;
-import ch.hftm.todo.model.TodoJson;
+import ch.hftm.todo.model.TodoData;
+import ch.hftm.todo.service.MessageService;
 import ch.hftm.todo.service.TodoService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -16,18 +20,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
-import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class TodoController implements Initializable
+public class TodoController implements Initializable, IListener
 {
 
     @FXML
@@ -64,7 +64,7 @@ public class TodoController implements Initializable
         editColumn.setCellValueFactory( new PropertyValueFactory<>("editButton") );
         deleteColumn.setCellValueFactory( new PropertyValueFactory<>( "deleteButton" ) );
 
-        List<TodoJson> todoJsons = TodoService.getInstance().getTodos();
+        List<TodoData> todoJsons = TodoService.getInstance().getTodos();
 
         List<Todo> todos = todoJsons.stream()
                 .sorted( new TodoComparator() )
@@ -95,18 +95,32 @@ public class TodoController implements Initializable
     public void createTodo(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TodoApp.class.getResource("view/todo-form.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 500);
-        Stage stage = new Stage();
-        stage.setTitle("Hello!");
+
+        Stage stage = TodoApp.getTodoFormStage();
+        stage.setTitle("Todo erfassen");
+
         stage.setScene(scene);
         stage.show();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        MessageService.getInstance().registerListener( TodoChangedEvent.class, this, 1 );
+
         showToDos();
     }
 
     public void test(MouseEvent mouseEvent) {
         System.out.println(mouseEvent.getTarget());
+    }
+
+    @Override
+    public void onMessage( IEvent event )
+    {
+        if( event instanceof TodoChangedEvent )
+        {
+            showToDos();
+        }
     }
 }

@@ -1,7 +1,7 @@
 package ch.hftm.todo.service;
 
 import ch.hftm.todo.caches.TodoCache;
-import ch.hftm.todo.model.TodoJson;
+import ch.hftm.todo.model.TodoData;
 import ch.hftm.todo.stores.TodoStore;
 
 import java.util.List;
@@ -17,19 +17,24 @@ public class TodoService
 
     private TodoService(){}
 
-    public List<TodoJson> getTodos()
+    public List<TodoData> getTodos()
     {
         return TodoCache.getInstance().getTodos();
     }
 
-    public TodoJson getTodo( int id )
+    public TodoData getTodo(int id )
     {
         return TodoCache.getInstance().getTodo( id );
     }
 
-    public void saveTodo( TodoJson todo )
+    public void saveTodo( TodoData todo )
     {
         TodoStore.getInstance().saveTodo( todo );
         //TodoCache.getInstance().updateCache( todo );
+    }
+
+    public int getNextFreeId()
+    {
+        return TodoCache.getInstance().getNextFreeId();
     }
 }

@@ -1,6 +1,6 @@
 package ch.hftm.todo.stores;
 
-import ch.hftm.todo.model.TodoJson;
+import ch.hftm.todo.model.TodoData;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -26,9 +26,9 @@ public class TodoStore
      *
      * @return List of all todos in the todos-folder
      */
-    public List<TodoJson> getTodos()
+    public List<TodoData> getTodos()
     {
-        List<TodoJson> todoJsons = new ArrayList<>();
+        List<TodoData> todoJsons = new ArrayList<>();
 
         File dir = new File("todos/");
 
@@ -41,7 +41,7 @@ public class TodoStore
                     if ( file.isFile() )
                     {
                         String todoJson = Files.readString( Path.of( file.getPath() ) );
-                        TodoJson todo = new ObjectMapper().readValue( todoJson, TodoJson.class );
+                        TodoData todo = new ObjectMapper().readValue( todoJson, TodoData.class );
 
                         todoJsons.add( todo );
                     }
@@ -56,7 +56,7 @@ public class TodoStore
         return todoJsons;
     }
 
-    public void saveTodo( TodoJson todo )
+    public void saveTodo( TodoData todo )
     {
         try
         {

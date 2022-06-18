@@ -1,6 +1,6 @@
 package ch.hftm.todo.model;
 
-public class TodoJson
+public class TodoData
 {
     private int id;
     private String name;

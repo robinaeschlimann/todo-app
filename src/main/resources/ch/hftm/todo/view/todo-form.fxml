@@ -13,15 +13,13 @@
         <ColumnConstraints hgrow="ALWAYS" maxWidth="Infinity" minWidth="200.0" prefWidth="402.4" />
     </columnConstraints>
    <Label text="Todo : " />
-   <TextField prefHeight="40.0" GridPane.columnIndex="1" />
+   <TextField fx:id="todoField" prefHeight="40.0" GridPane.columnIndex="1" />
     <!-- Add Name Label -->
     <Label text="Deadline : " GridPane.columnIndex="0" GridPane.rowIndex="1" />
-    <!-- Add Name Text Field -->
-    <TextField fx:id="fullNameField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     <!-- Add Email Label -->
     <Label text="Zuständige Person : " GridPane.columnIndex="0" GridPane.rowIndex="2" />
     <!-- Add Email Text Field -->
-    <TextField fx:id="emailIdField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="personField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     <!-- Add Password Label -->
     <Label text="Beschreibung : " GridPane.columnIndex="0" GridPane.rowIndex="3" />
     <!-- Add Submit Button -->
@@ -30,7 +28,8 @@
             <Insets bottom="20" left="0" right="0" top="20" />
         </GridPane.margin>
     </Button>
-   <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+   <TextArea fx:id="descriptionField" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+   <DatePicker fx:id="deadlineField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
    <rowConstraints>
       <RowConstraints />
       <RowConstraints />

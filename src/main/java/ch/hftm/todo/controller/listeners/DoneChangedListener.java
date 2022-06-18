@@ -1,6 +1,6 @@
 package ch.hftm.todo.controller.listeners;
 
-import ch.hftm.todo.model.TodoJson;
+import ch.hftm.todo.model.TodoData;
 import ch.hftm.todo.service.TodoService;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -19,7 +19,7 @@ public class DoneChangedListener implements ChangeListener<Boolean>
     {
         System.out.println( "TodoId " + todoId + " set to done=" + newValue );
 
-        TodoJson todo = TodoService.getInstance().getTodo( todoId );
+        TodoData todo = TodoService.getInstance().getTodo( todoId );
         todo.setDone( newValue );
 
         TodoService.getInstance().saveTodo( todo );

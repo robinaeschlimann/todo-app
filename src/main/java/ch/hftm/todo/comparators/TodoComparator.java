@@ -1,16 +1,16 @@
 package ch.hftm.todo.comparators;
 
-import ch.hftm.todo.model.TodoJson;
+import ch.hftm.todo.model.TodoData;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 
-public class TodoComparator implements Comparator<TodoJson>
+public class TodoComparator implements Comparator<TodoData>
 {
     @Override
-    public int compare(TodoJson todo1, TodoJson todo2)
+    public int compare(TodoData todo1, TodoData todo2)
     {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat( "dd.MM.yyyy" );
 
