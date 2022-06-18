@@ -25,7 +25,7 @@
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <center>
-                  <TableView fx:id="todoList" onMouseClicked="#test" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="todoList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
                       <TableColumn fx:id="nameColumn" prefWidth="154.4000244140625" text="Bezeichnung" />
                       <TableColumn fx:id="descriptionColumn" prefWidth="368.0" text="Beschreibung" />

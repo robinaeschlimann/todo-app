@@ -14,7 +14,7 @@ public class DeleteEventHandler implements EventHandler<ActionEvent>
 
     @Override
     public void handle(ActionEvent event) {
-        System.out.println(todoId);
+
 
     }
 }

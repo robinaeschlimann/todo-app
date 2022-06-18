@@ -31,8 +31,19 @@ public class TodoFormController implements Initializable
     TextArea descriptionField;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
+        Object userData = TodoApp.getTodoFormStage().getUserData();
 
+        if( userData instanceof TodoData )
+        {
+            TodoData todoData = (TodoData) userData;
+
+            todoField.setText( todoData.getName() );
+            deadlineField.getEditor().setText( todoData.getDeadline() );
+            personField.setText( todoData.getPerson() );
+            descriptionField.setText( todoData.getDescription() );
+        }
     }
 
     public void resetAndExit()
@@ -47,19 +58,35 @@ public class TodoFormController implements Initializable
 
     public void saveTodo()
     {
-        TodoData todoData = new TodoData();
-        todoData.setId( TodoService.getInstance().getNextFreeId() );
+        EChangeType changeType = EChangeType.CREATE;
+
+        Object userData = TodoApp.getTodoFormStage().getUserData();
+        TodoData todoData = null;
+
+        if( userData instanceof TodoData ) // Editieren eines ToDos
+        {
+            changeType = EChangeType.UPDATE;
+            todoData = (TodoData) userData;
+        }
+        else // Erstellen eines ToDos
+        {
+            todoData = new TodoData();
+            todoData.setId( TodoService.getInstance().getNextFreeId() );
+            todoData.setDone( false );
+        }
+
         todoData.setName( todoField.getText() );
         todoData.setDeadline( deadlineField.getEditor().getText() );
         todoData.setPerson( personField.getText() );
         todoData.setDescription( descriptionField.getText() );
-        todoData.setDone( false );
         todoData.setGroup( 1 );
 
         TodoService.getInstance().saveTodo( todoData );
 
-        MessageService.getInstance().publishMessage( new TodoChangedEvent( todoData, EChangeType.CREATE ) );
+        MessageService.getInstance().publishMessage( new TodoChangedEvent( todoData, changeType ) );
 
         resetAndExit();
     }
+
+
 }

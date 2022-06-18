@@ -93,11 +93,19 @@ public class TodoController implements Initializable, IListener
     }
 
     public void createTodo(ActionEvent actionEvent) throws IOException {
+        openTodoFormStage( "Todo erfassen", null );
+    }
+
+    public static void openTodoFormStage( String title, TodoData todoData ) throws IOException
+    {
+        // Stage mit UserData muss vor dem laden des fxml aufgerufen werden, da die Daten im initialize
+        // ausgelesen werden müssen
+        Stage stage = TodoApp.getTodoFormStage();
+        stage.setTitle( title );
+        stage.setUserData( todoData );
+
         FXMLLoader fxmlLoader = new FXMLLoader(TodoApp.class.getResource("view/todo-form.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 500);
-
-        Stage stage = TodoApp.getTodoFormStage();
-        stage.setTitle("Todo erfassen");
 
         stage.setScene(scene);
         stage.show();
@@ -109,10 +117,6 @@ public class TodoController implements Initializable, IListener
         MessageService.getInstance().registerListener( TodoChangedEvent.class, this, 1 );
 
         showToDos();
-    }
-
-    public void test(MouseEvent mouseEvent) {
-        System.out.println(mouseEvent.getTarget());
     }
 
     @Override
