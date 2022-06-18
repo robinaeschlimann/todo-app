@@ -62,17 +62,22 @@ public class TodoStore
         {
             File todoFile = new File( "todos/todo" + todo.getId() + ".json" );
 
-            if( !todoFile.exists() )
-            {
-
-            }
-
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.writeValue( todoFile, todo );
         }
         catch ( IOException e )
         {
             e.printStackTrace();
+        }
+    }
+
+    public void deleteTodo( int todoId )
+    {
+        File todoFile = new File( "todos/todo" + todoId + ".json" );
+
+        if( todoFile.exists() )
+        {
+            todoFile.delete();
         }
     }
 }

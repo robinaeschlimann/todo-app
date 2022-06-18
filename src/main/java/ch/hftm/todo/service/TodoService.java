@@ -30,11 +30,15 @@ public class TodoService
     public void saveTodo( TodoData todo )
     {
         TodoStore.getInstance().saveTodo( todo );
-        //TodoCache.getInstance().updateCache( todo );
     }
 
     public int getNextFreeId()
     {
         return TodoCache.getInstance().getNextFreeId();
+    }
+
+    public void deleteTodo( int todoId )
+    {
+        TodoStore.getInstance().deleteTodo( todoId );
     }
 }
