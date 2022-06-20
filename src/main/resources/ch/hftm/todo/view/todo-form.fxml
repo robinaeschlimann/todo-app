@@ -12,17 +12,24 @@
         <ColumnConstraints halignment="RIGHT" maxWidth="Infinity" minWidth="61.0" prefWidth="117.6" />
         <ColumnConstraints hgrow="ALWAYS" maxWidth="Infinity" minWidth="200.0" prefWidth="402.4" />
     </columnConstraints>
-   <Label text="Todo : " />
+   <Label text="Bezeichnung* : " />
    <TextField fx:id="todoField" prefHeight="40.0" GridPane.columnIndex="1" />
-    <Label text="Deadline : " GridPane.columnIndex="0" GridPane.rowIndex="1" />
-    <Label text="Zuständige Person : " GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <Label text="Deadline* : " GridPane.columnIndex="0" GridPane.rowIndex="1" />
+   <DatePicker fx:id="deadlineField" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label text="Zuständige Person* : " GridPane.columnIndex="0" GridPane.rowIndex="2" />
     <TextField fx:id="personField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     <Label text="Beschreibung : " GridPane.columnIndex="0" GridPane.rowIndex="3" />
+   <TextArea fx:id="descriptionField" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
     <Button fx:id="submitButton" defaultButton="true" onAction="#saveTodo" prefHeight="40" prefWidth="100" text="Speichern" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="1">
         <GridPane.margin>
             <Insets bottom="20" left="0" right="0" top="20" />
         </GridPane.margin>
     </Button>
-   <TextArea fx:id="descriptionField" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-   <DatePicker fx:id="deadlineField" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
 </GridPane>

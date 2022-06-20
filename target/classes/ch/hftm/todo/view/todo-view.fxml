@@ -28,21 +28,21 @@
                <center>
                   <TableView fx:id="todoList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
-                      <TableColumn fx:id="nameColumn" prefWidth="154.4000244140625" text="Bezeichnung" />
-                      <TableColumn fx:id="descriptionColumn" prefWidth="368.0" text="Beschreibung" />
-                        <TableColumn fx:id="deadlineColumn" prefWidth="75.0" text="Deadline" />
-                        <TableColumn fx:id="personColumn" prefWidth="266.39996337890625" text="Zuständige Person" />
-                        <TableColumn fx:id="doneColumn" prefWidth="27.20001220703125" />
-                        <TableColumn fx:id="editColumn" prefWidth="75.0" />
-                        <TableColumn fx:id="deleteColumn" prefWidth="75.0" />
+                      <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Bezeichnung" />
+                      <TableColumn fx:id="descriptionColumn" prefWidth="380.0" text="Beschreibung" />
+                        <TableColumn fx:id="deadlineColumn" prefWidth="85.0" text="Deadline" />
+                        <TableColumn fx:id="personColumn" prefWidth="270.0" text="Zuständige Person" />
+                        <TableColumn fx:id="doneColumn" minWidth="4.5999755859375" prefWidth="35.79998779296875" />
+                        <TableColumn fx:id="editColumn" prefWidth="104.0" />
+                        <TableColumn fx:id="deleteColumn" prefWidth="104.0" />
                     </columns>
-                     <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </padding>
                   </TableView>
                </center>
                <top>
-                  <Button mnemonicParsing="false" onAction="#createTodo" text="Neu" BorderPane.alignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#createTodo" text="Neu" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </BorderPane.margin></Button>
                </top>
             </BorderPane>
          </center>
