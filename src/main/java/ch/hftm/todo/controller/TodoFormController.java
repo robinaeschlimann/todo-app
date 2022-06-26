@@ -6,7 +6,6 @@ import ch.hftm.todo.events.TodoChangedEvent;
 import ch.hftm.todo.model.TodoData;
 import ch.hftm.todo.service.MessageService;
 import ch.hftm.todo.service.TodoService;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;

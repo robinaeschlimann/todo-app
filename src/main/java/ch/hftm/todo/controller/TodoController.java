@@ -19,7 +19,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -82,12 +81,12 @@ public class TodoController implements Initializable, IListener
         Platform.exit();
     }
 
-    public void myInfo(ActionEvent actionEvent)
+    public void showInfo(ActionEvent actionEvent)
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Info");
         alert.setHeaderText("ToDo-App");
-        alert.setContentText("Version 1.0");
+        alert.setContentText("Autor: Robin Aeschlimann\nVersion 1.0");
 
         alert.showAndWait();
     }
