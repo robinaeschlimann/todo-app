@@ -4,14 +4,12 @@ import ch.hftm.todo.TodoApp;
 import ch.hftm.todo.events.EChangeType;
 import ch.hftm.todo.events.TodoChangedEvent;
 import ch.hftm.todo.model.TodoData;
+import ch.hftm.todo.model.ETodoGroup;
 import ch.hftm.todo.service.MessageService;
 import ch.hftm.todo.service.TodoService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.text.ParseException;
@@ -32,9 +30,15 @@ public class TodoFormController implements Initializable
     @FXML
     TextArea descriptionField;
 
+    @FXML
+    ComboBox<ETodoGroup> groupCombobox;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        ControllerUtil.loadGroups( groupCombobox, ETodoGroup.PRIVATE, ETodoGroup.ALL );
+
+        // Load selected user
         Object userData = TodoApp.getTodoFormStage().getUserData();
 
         if( userData instanceof TodoData )
@@ -45,6 +49,7 @@ public class TodoFormController implements Initializable
             deadlineField.getEditor().setText( todoData.getDeadline() );
             personField.setText( todoData.getPerson() );
             descriptionField.setText( todoData.getDescription() );
+            groupCombobox.setValue( ETodoGroup.getById( todoData.getGroup() ) );
         }
     }
 
@@ -83,7 +88,7 @@ public class TodoFormController implements Initializable
             todoData.setDeadline(deadlineField.getEditor().getText());
             todoData.setPerson(personField.getText());
             todoData.setDescription(descriptionField.getText());
-            todoData.setGroup(1);
+            todoData.setGroup(groupCombobox.getValue().getId());
 
             TodoService.getInstance().saveTodo(todoData);
 

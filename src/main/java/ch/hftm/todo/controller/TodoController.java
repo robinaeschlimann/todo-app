@@ -7,6 +7,7 @@ import ch.hftm.todo.events.IListener;
 import ch.hftm.todo.events.TodoChangedEvent;
 import ch.hftm.todo.model.Todo;
 import ch.hftm.todo.model.TodoData;
+import ch.hftm.todo.model.ETodoGroup;
 import ch.hftm.todo.service.MessageService;
 import ch.hftm.todo.service.TodoService;
 import javafx.application.Platform;
@@ -53,6 +54,9 @@ public class TodoController implements Initializable, IListener
     @FXML
     TableColumn<Todo, String> deleteColumn;
 
+    @FXML
+    ComboBox<ETodoGroup> groupFilterCombobox;
+
     protected void showToDos()
     {
         nameColumn.setCellValueFactory( cellData -> cellData.getValue().getNameProperty() );
@@ -75,6 +79,10 @@ public class TodoController implements Initializable, IListener
 
         todoList.setItems(observableList);
 
+    }
+
+    protected void loadFilter() {
+        ControllerUtil.loadGroups( groupFilterCombobox, ETodoGroup.ALL );
     }
 
     public void exit(ActionEvent actionEvent) {
@@ -116,6 +124,7 @@ public class TodoController implements Initializable, IListener
         MessageService.getInstance().registerListener( TodoChangedEvent.class, this, 1 );
 
         showToDos();
+        loadFilter();
     }
 
     @Override

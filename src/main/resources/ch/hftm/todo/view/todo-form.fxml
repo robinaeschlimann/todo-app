@@ -18,11 +18,13 @@
    <DatePicker fx:id="deadlineField" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     <Label text="Zuständige Person* : " GridPane.columnIndex="0" GridPane.rowIndex="2" />
     <TextField fx:id="personField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-    <Label text="Beschreibung : " GridPane.columnIndex="0" GridPane.rowIndex="3" />
-   <TextArea fx:id="descriptionField" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-    <Button fx:id="submitButton" defaultButton="true" onAction="#saveTodo" prefHeight="40" prefWidth="100" text="Speichern" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="1">
+   <Label text="Gruppe* : " GridPane.rowIndex="3" />
+   <ComboBox fx:id="groupCombobox" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <Label text="Beschreibung : " GridPane.columnIndex="0" GridPane.rowIndex="4" />
+   <TextArea fx:id="descriptionField" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <Button fx:id="submitButton" defaultButton="true" onAction="#saveTodo" prefHeight="40" prefWidth="100" text="Speichern" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="1">
         <GridPane.margin>
-            <Insets bottom="20" left="0" right="0" top="20" />
+            <Insets bottom="20.0" top="49.0" />
         </GridPane.margin>
     </Button>
    <rowConstraints>
@@ -31,5 +33,6 @@
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
    </rowConstraints>
 </GridPane>
