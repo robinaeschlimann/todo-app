@@ -57,7 +57,7 @@ public class TodoController implements Initializable, IListener
     @FXML
     ComboBox<ETodoGroup> groupFilterCombobox;
 
-    protected void showToDos()
+    protected void showToDos( ETodoGroup group )
     {
         nameColumn.setCellValueFactory( cellData -> cellData.getValue().getNameProperty() );
         descriptionColumn.setCellValueFactory( cellData -> cellData.getValue().getDescriptionProperty() );
@@ -67,9 +67,10 @@ public class TodoController implements Initializable, IListener
         editColumn.setCellValueFactory( new PropertyValueFactory<>("editButton") );
         deleteColumn.setCellValueFactory( new PropertyValueFactory<>( "deleteButton" ) );
 
-        List<TodoData> todoJsons = TodoService.getInstance().getTodos();
+        List<TodoData> todoDatas = TodoService.getInstance().getTodos();
 
-        List<Todo> todos = todoJsons.stream()
+        List<Todo> todos = todoDatas.stream()
+                .filter( todoData -> group == ETodoGroup.ALL || todoData.getGroup() == group.getId() )
                 .sorted( new TodoComparator() )
                 .map(todoJson -> new Todo(todoJson.getId(), todoJson.getName(), todoJson.getDescription(),
                         todoJson.getDeadline(), todoJson.getPerson(), todoJson.isDone()))
@@ -103,6 +104,11 @@ public class TodoController implements Initializable, IListener
         openTodoFormStage( "Todo erfassen", null );
     }
 
+    public void onGroupFilterChanged( ActionEvent event )
+    {
+        showToDos( groupFilterCombobox.getValue() );
+    }
+
     public static void openTodoFormStage( String title, TodoData todoData ) throws IOException
     {
         // Stage mit UserData muss vor dem laden des fxml aufgerufen werden, da die Daten im initialize
@@ -123,7 +129,7 @@ public class TodoController implements Initializable, IListener
 
         MessageService.getInstance().registerListener( TodoChangedEvent.class, this, 1 );
 
-        showToDos();
+        showToDos( ETodoGroup.ALL );
         loadFilter();
     }
 
@@ -132,7 +138,7 @@ public class TodoController implements Initializable, IListener
     {
         if( event instanceof TodoChangedEvent )
         {
-            showToDos();
+            showToDos( groupFilterCombobox.getValue() );
         }
     }
 }
