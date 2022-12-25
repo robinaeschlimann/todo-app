@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hftm.todo.view.PersonViewXml">
+   <children>
+      <BorderPane prefHeight="800.0" prefWidth="1000.0">
+         <bottom>
+            <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <buttons>
+                <Button mnemonicParsing="false" text="Neu" />
+              </buttons>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </ButtonBar>
+         </bottom>
+         <center>
+            <TableView fx:id="personTable" BorderPane.alignment="CENTER">
+              <columns>
+                  <TableColumn fx:id="salutationColumn" prefWidth="101.0" text="Anrede" />
+                <TableColumn fx:id="firstnameColumn" minWidth="0.0" prefWidth="238.0" text="Vorname" />
+                <TableColumn fx:id="lastnameColumn" prefWidth="231.0" text="Nachname" />
+                  <TableColumn fx:id="emailColumn" prefWidth="252.0" text="Email" />
+                  <TableColumn fx:id="userEditColumn" prefWidth="75.0" />
+                  <TableColumn fx:id="userDeleteColumn" prefWidth="75.0" />
+              </columns>
+            </TableView>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
