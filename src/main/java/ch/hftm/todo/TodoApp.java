@@ -15,8 +15,8 @@ public class TodoApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        this.defaultStage = stage;
-        this.todoFormStage = new Stage();
+        defaultStage = stage;
+        todoFormStage = new Stage();
 
         FXMLLoader fxmlLoader = new FXMLLoader(TodoApp.class.getResource("view/todo-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 600);
