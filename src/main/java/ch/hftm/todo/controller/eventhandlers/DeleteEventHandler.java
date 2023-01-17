@@ -12,22 +12,15 @@ import javafx.scene.control.ButtonType;
 
 import java.util.Optional;
 
-public class DeleteEventHandler implements EventHandler<ActionEvent>
+public record DeleteEventHandler(int todoId) implements EventHandler<ActionEvent>
 {
-    private int todoId;
-
-    public DeleteEventHandler(int todoId )
-    {
-        this.todoId = todoId;
-    }
-
     @Override
     public void handle(ActionEvent event)
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle( "ToDo löschen" );
-        alert.setHeaderText( "ToDo löschen" );
-        alert.setContentText( "Möchtest du dieses ToDo wirklich löschen?" );
+        alert.setTitle("ToDo löschen");
+        alert.setHeaderText("ToDo löschen");
+        alert.setContentText("Möchtest du dieses ToDo wirklich löschen?");
 
         Optional<ButtonType> result = alert.showAndWait();
 

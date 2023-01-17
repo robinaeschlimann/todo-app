@@ -3,9 +3,11 @@ package ch.hftm.todo.service;
 import ch.hftm.todo.caches.TodoCache;
 import ch.hftm.todo.model.TodoData;
 import ch.hftm.todo.stores.TodoStore;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
+@Slf4j
 public class TodoService
 {
     private static final TodoService INSTANCE = new TodoService();
@@ -39,6 +41,9 @@ public class TodoService
 
     public void deleteTodo( int todoId )
     {
-        TodoStore.getInstance().deleteTodo( todoId );
+        if( !TodoStore.getInstance().deleteTodo( todoId ) )
+        {
+            log.error( "Error while deleting todo!" );
+        }
     }
 }

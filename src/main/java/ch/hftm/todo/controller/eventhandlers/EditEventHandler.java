@@ -8,22 +8,15 @@ import javafx.event.EventHandler;
 
 import java.io.IOException;
 
-public class EditEventHandler implements EventHandler<ActionEvent>
+public record EditEventHandler(int todoId) implements EventHandler<ActionEvent>
 {
-    private int todoId;
-
-    public EditEventHandler(int todoId )
-    {
-        this.todoId = todoId;
-    }
-
     @Override
     public void handle(ActionEvent event) {
-        TodoData todoData = TodoService.getInstance().getTodo( todoId );
+        TodoData todoData = TodoService.getInstance().getTodo(todoId);
 
         try
         {
-            TodoController.openTodoFormStage( "Todo editieren", todoData );
+            TodoController.openTodoFormStage("Todo editieren", todoData);
         } catch ( IOException e )
         {
             e.printStackTrace();

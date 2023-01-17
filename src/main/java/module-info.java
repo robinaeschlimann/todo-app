@@ -10,6 +10,7 @@ module ch.hftm.todo {
     requires eu.hansolo.tilesfx;
 
     requires com.fasterxml.jackson.databind;
+    requires lombok;
 
     opens ch.hftm.todo to javafx.fxml;
     exports ch.hftm.todo;

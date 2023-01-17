@@ -1,12 +1,14 @@
 package ch.hftm.todo.comparators;
 
 import ch.hftm.todo.model.TodoData;
+import lombok.extern.slf4j.Slf4j;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 
+@Slf4j
 public class TodoComparator implements Comparator<TodoData>
 {
     @Override
@@ -20,9 +22,10 @@ public class TodoComparator implements Comparator<TodoData>
             Date dateTodo2 = simpleDateFormat.parse( todo2.getDeadline() );
 
             return dateTodo1.compareTo( dateTodo2 );
-        } catch ( ParseException e )
+        }
+        catch ( ParseException e )
         {
-            e.printStackTrace();
+            log.error( "Can't parse date", e );
         }
 
         return 0;

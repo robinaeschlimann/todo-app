@@ -17,8 +17,6 @@ public class DoneChangedListener implements ChangeListener<Boolean>
     @Override
     public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue)
     {
-        System.out.println( "TodoId " + todoId + " set to done=" + newValue );
-
         TodoData todo = TodoService.getInstance().getTodo( todoId );
         todo.setDone( newValue );
 

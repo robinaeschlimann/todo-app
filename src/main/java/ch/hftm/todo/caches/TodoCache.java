@@ -6,6 +6,7 @@ import ch.hftm.todo.events.TodoChangedEvent;
 import ch.hftm.todo.model.TodoData;
 import ch.hftm.todo.service.MessageService;
 import ch.hftm.todo.stores.TodoStore;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class TodoCache implements IListener
 {
     private static final TodoCache INSTANCE = new TodoCache();
@@ -83,24 +85,13 @@ public class TodoCache implements IListener
     @Override
     public void onMessage(IEvent event)
     {
-        if( event instanceof TodoChangedEvent )
+        if( event instanceof TodoChangedEvent todoChangedEvent )
         {
-            TodoChangedEvent todoChangedEvent = (TodoChangedEvent) event;
-
             switch ( todoChangedEvent.getType() )
             {
-                case CREATE, UPDATE -> {
-
-                    updateCache( todoChangedEvent.getTodoData() );
-
-                    break;
-                }
-                case DELETE -> {
-
-                    todoCache.remove( todoChangedEvent.getTodoData().getId() );
-
-                    break;
-                }
+                case CREATE, UPDATE -> updateCache( todoChangedEvent.getTodoData() );
+                case DELETE -> todoCache.remove( todoChangedEvent.getTodoData().getId() );
+                default -> log.warn( "EventType {} doesn't exist", todoChangedEvent.getType() );
             }
         }
     }

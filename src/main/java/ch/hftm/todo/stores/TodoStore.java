@@ -2,6 +2,7 @@ package ch.hftm.todo.stores;
 
 import ch.hftm.todo.model.TodoData;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class TodoStore
 {
     private static TodoStore INSTANCE = new TodoStore();
@@ -48,7 +50,7 @@ public class TodoStore
                 }
                 catch ( IOException e )
                 {
-                    e.printStackTrace();
+                    log.error( "Can't get todos from JSON", e );
                 }
             }
         }
@@ -67,17 +69,17 @@ public class TodoStore
         }
         catch ( IOException e )
         {
-            e.printStackTrace();
+            log.error( "Error while saving todo", e );
         }
     }
 
-    public void deleteTodo( int todoId )
+    public boolean deleteTodo( int todoId )
     {
         File todoFile = new File( "todos/todo" + todoId + ".json" );
 
         if( todoFile.exists() )
         {
-            todoFile.delete();
+            return todoFile.delete();
         }
     }
 }
