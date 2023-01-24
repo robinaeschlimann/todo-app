@@ -28,7 +28,7 @@ public class TodoApp extends Application {
         stage.setScene(scene);
         stage.show();
 
-        TodoService.getInstance().getTodos();
+        TodoService.getInstance().getAll();
     }
 
     public static void main(String[] args) {

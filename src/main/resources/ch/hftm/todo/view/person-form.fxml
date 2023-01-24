@@ -19,12 +19,12 @@
     <Label text="Nachname* : " GridPane.columnIndex="0" GridPane.rowIndex="2" />
     <TextField fx:id="lastnameField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    <Label text="Email* : " GridPane.rowIndex="3" />
-   <TextField prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+   <TextField fx:id="emailField" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
     <Label text="Passwort* : " GridPane.columnIndex="0" GridPane.rowIndex="4" />
-   <PasswordField prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+   <PasswordField fx:id="passwordField" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
    <Label text="Berechtigung* : " GridPane.rowIndex="5" />
-   <ComboBox prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-    <Button fx:id="submitButton" defaultButton="true" onAction="#saveTodo" prefHeight="40" prefWidth="100" text="Speichern" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.rowSpan="1">
+   <ComboBox fx:id="permissionCombobox" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <Button fx:id="submitButton" defaultButton="true" onAction="#savePerson" prefHeight="40" prefWidth="100" text="Speichern" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.rowSpan="1">
         <GridPane.margin>
             <Insets bottom="20.0" top="49.0" />
         </GridPane.margin>

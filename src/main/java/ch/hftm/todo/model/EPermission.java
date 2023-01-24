@@ -2,6 +2,24 @@ package ch.hftm.todo.model;
 
 public enum EPermission
 {
-    ADMIN,
-    USER
+    ADMIN ( 1, "Administrator" ),
+    USER ( 2, "Benutzer" );
+
+    private final String text;
+    private final int id;
+
+    EPermission( int id, String text )
+    {
+        this.id = id;
+        this.text = text;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getText()
+    {
+        return text;
+    }
 }

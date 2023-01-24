@@ -12,7 +12,7 @@ public record EditEventHandler(int todoId) implements EventHandler<ActionEvent>
 {
     @Override
     public void handle(ActionEvent event) {
-        TodoData todoData = TodoService.getInstance().getTodo(todoId);
+        TodoData todoData = TodoService.getInstance().get(todoId);
 
         try
         {

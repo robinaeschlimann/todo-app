@@ -26,9 +26,9 @@ public record DeleteEventHandler(int todoId) implements EventHandler<ActionEvent
 
         if ( result.get() == ButtonType.OK )
         {
-            TodoData todoData = TodoService.getInstance().getTodo(todoId);
+            TodoData todoData = TodoService.getInstance().get(todoId);
 
-            TodoService.getInstance().deleteTodo(todoId);
+            TodoService.getInstance().delete(todoId);
 
             MessageService.getInstance().publishMessage(new TodoChangedEvent(todoData, EChangeType.DELETE));
         }

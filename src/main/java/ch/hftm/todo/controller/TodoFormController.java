@@ -90,7 +90,7 @@ public class TodoFormController implements Initializable
             todoData.setDescription(descriptionField.getText());
             todoData.setGroup(groupCombobox.getValue().getId());
 
-            TodoService.getInstance().saveTodo(todoData);
+            TodoService.getInstance().save(todoData);
 
             MessageService.getInstance().publishMessage(new TodoChangedEvent(todoData, changeType));
 

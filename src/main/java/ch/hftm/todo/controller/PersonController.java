@@ -3,7 +3,11 @@ package ch.hftm.todo.controller;
 import ch.hftm.todo.TodoApp;
 import ch.hftm.todo.comparators.PersonComparator;
 import ch.hftm.todo.comparators.TodoComparator;
+import ch.hftm.todo.events.IEvent;
+import ch.hftm.todo.events.IListener;
+import ch.hftm.todo.events.PersonChangedEvent;
 import ch.hftm.todo.model.*;
+import ch.hftm.todo.service.MessageService;
 import ch.hftm.todo.service.PersonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +26,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class PersonController implements Initializable
+public class PersonController implements Initializable, IListener
 {
     @FXML
     TableView<Person> personTable;
@@ -48,6 +52,8 @@ public class PersonController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        MessageService.getInstance().registerListener( PersonChangedEvent.class, this, 1 );
+
         showPersons();
     }
 
@@ -58,8 +64,7 @@ public class PersonController implements Initializable
         lastnameColumn.setCellValueFactory( cellValue -> cellValue.getValue().getLastname() );
         emailColumn.setCellValueFactory( cellValue -> cellValue.getValue().getEmail() );
 
-        List<PersonData> personDatas = PersonService.getInstance()
-                .getPersons();
+        List<PersonData> personDatas = PersonService.getInstance().getAll();
 
         List<Person> persons = personDatas.stream()
                 .sorted( new PersonComparator() )
@@ -89,5 +94,16 @@ public class PersonController implements Initializable
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void onMessage(IEvent event)
+    {
+        if( event instanceof PersonChangedEvent changedEvent )
+        {
+            var data = changedEvent.getPersonData();
+
+            showPersons();
+        }
     }
 }

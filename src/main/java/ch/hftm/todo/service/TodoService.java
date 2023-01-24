@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 
 @Slf4j
-public class TodoService
+public class TodoService implements IDataService<TodoData>
 {
     private static final TodoService INSTANCE = new TodoService();
 
@@ -19,17 +19,20 @@ public class TodoService
 
     private TodoService(){}
 
-    public List<TodoData> getTodos()
+    @Override
+    public List<TodoData> getAll()
     {
         return TodoCache.getInstance().getTodos();
     }
 
-    public TodoData getTodo(int id )
+    @Override
+    public TodoData get(int id )
     {
         return TodoCache.getInstance().getTodo( id );
     }
 
-    public void saveTodo( TodoData todo )
+    @Override
+    public void save( TodoData todo )
     {
         TodoStore.getInstance().saveTodo( todo );
     }
@@ -39,11 +42,15 @@ public class TodoService
         return TodoCache.getInstance().getNextFreeId();
     }
 
-    public void deleteTodo( int todoId )
+    @Override
+    public boolean delete( int todoId )
     {
         if( !TodoStore.getInstance().deleteTodo( todoId ) )
         {
             log.error( "Error while deleting todo!" );
+            return false;
         }
+
+        return true;
     }
 }

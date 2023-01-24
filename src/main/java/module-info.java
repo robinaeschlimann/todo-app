@@ -11,6 +11,7 @@ module ch.hftm.todo {
 
     requires com.fasterxml.jackson.databind;
     requires lombok;
+    requires org.slf4j;
 
     opens ch.hftm.todo to javafx.fxml;
     exports ch.hftm.todo;

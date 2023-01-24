@@ -1,8 +1,8 @@
 package ch.hftm.todo.stores;
 
 import ch.hftm.todo.model.PersonData;
-import ch.hftm.todo.model.TodoData;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class PersonStore
 {
     private static final PersonStore INSTANCE = new PersonStore();
@@ -49,11 +50,38 @@ public class PersonStore
                 }
                 catch ( IOException e )
                 {
-                    e.printStackTrace();
+                    log.error( "Can't load persons", e );
                 }
             }
         }
 
         return personDatas;
+    }
+
+    public void savePerson( PersonData data )
+    {
+        try
+        {
+            File personFile = new File( "data/persons/person" + data.getId() + ".json" );
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writeValue( personFile, data );
+        }
+        catch ( IOException e )
+        {
+            log.error( "Error while saving todo", e );
+        }
+    }
+
+    public boolean deletePerson( int id )
+    {
+        File personFile = new File( "data/persons/person" + id + ".json" );
+
+        if( personFile.exists() )
+        {
+            return personFile.delete();
+        }
+
+        return false;
     }
 }

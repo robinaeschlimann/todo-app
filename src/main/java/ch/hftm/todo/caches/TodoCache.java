@@ -59,7 +59,7 @@ public class TodoCache implements IListener
         {
             List<Integer> keys = todoCache.keySet().stream()
                     .sorted()
-                    .collect(Collectors.toList());
+                    .toList();
 
             nextFreeId = keys.get( keys.size() - 1 ) + 1;
         }

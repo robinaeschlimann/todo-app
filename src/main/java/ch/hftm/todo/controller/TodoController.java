@@ -67,7 +67,7 @@ public class TodoController implements Initializable, IListener
         editColumn.setCellValueFactory( new PropertyValueFactory<>("editButton") );
         deleteColumn.setCellValueFactory( new PropertyValueFactory<>( "deleteButton" ) );
 
-        List<TodoData> todoDatas = TodoService.getInstance().getTodos();
+        List<TodoData> todoDatas = TodoService.getInstance().getAll();
 
         List<Todo> todos = todoDatas.stream()
                 .filter( todoData -> group == ETodoGroup.ALL || todoData.getGroup() == group.getId() )
