@@ -99,10 +99,8 @@ public class PersonController implements Initializable, IListener
     @Override
     public void onMessage(IEvent event)
     {
-        if( event instanceof PersonChangedEvent changedEvent )
+        if( event instanceof PersonChangedEvent )
         {
-            var data = changedEvent.getPersonData();
-
             showPersons();
         }
     }

@@ -3,7 +3,6 @@ package ch.hftm.todo.caches;
 import ch.hftm.todo.events.IEvent;
 import ch.hftm.todo.events.IListener;
 import ch.hftm.todo.events.PersonChangedEvent;
-import ch.hftm.todo.events.TodoChangedEvent;
 import ch.hftm.todo.model.PersonData;
 import ch.hftm.todo.service.MessageService;
 import ch.hftm.todo.stores.PersonStore;
