@@ -23,7 +23,8 @@ public class Todo
         this.name = new SimpleStringProperty( todoData.getName() );
         this.description = new SimpleStringProperty( todoData.getDescription() );
         this.deadline = new SimpleStringProperty( todoData.getDeadline() );
-        this.person = new SimpleStringProperty( todoData.getPerson() );
+        PersonData person = todoData.getPersonData();
+        this.person = new SimpleStringProperty(person.toString());
 
         doneCheckBox = new CheckBox();
         doneCheckBox.setSelected( todoData.isDone() );

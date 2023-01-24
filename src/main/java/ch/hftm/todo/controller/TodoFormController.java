@@ -3,17 +3,22 @@ package ch.hftm.todo.controller;
 import ch.hftm.todo.TodoApp;
 import ch.hftm.todo.events.EChangeType;
 import ch.hftm.todo.events.TodoChangedEvent;
+import ch.hftm.todo.model.PersonData;
 import ch.hftm.todo.model.TodoData;
 import ch.hftm.todo.model.ETodoGroup;
 import ch.hftm.todo.service.MessageService;
+import ch.hftm.todo.service.PersonService;
 import ch.hftm.todo.service.TodoService;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.util.StringConverter;
 
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TodoFormController implements Initializable
@@ -25,7 +30,7 @@ public class TodoFormController implements Initializable
     DatePicker deadlineField;
 
     @FXML
-    TextField personField;
+    ComboBox<PersonData> personCombobox;
 
     @FXML
     TextArea descriptionField;
@@ -38,6 +43,8 @@ public class TodoFormController implements Initializable
     {
         ControllerUtil.loadGroups( groupCombobox, ETodoGroup.PRIVATE, ETodoGroup.ALL );
 
+        loadPersons();
+
         // Load selected user
         Object userData = TodoApp.getTodoFormStage().getUserData();
 
@@ -47,17 +54,38 @@ public class TodoFormController implements Initializable
 
             todoField.setText( todoData.getName() );
             deadlineField.getEditor().setText( todoData.getDeadline() );
-            personField.setText( todoData.getPerson() );
+            personCombobox.setValue( todoData.getPersonData() );
             descriptionField.setText( todoData.getDescription() );
             groupCombobox.setValue( ETodoGroup.getById( todoData.getGroup() ) );
         }
     }
 
-    public void resetAndExit()
+    private void loadPersons() {
+        List<PersonData> persons = PersonService.getInstance().getAll();
+
+        personCombobox.setItems(FXCollections.observableArrayList(persons));
+        personCombobox.setConverter(new StringConverter<>()
+        {
+            @Override
+            public String toString(PersonData personData) {
+
+                return personData != null ? personData.toString() : null;
+            }
+
+            @Override
+            public PersonData fromString(String s) {
+                return null;
+            }
+        });
+
+        personCombobox.setValue( persons.get(0) );
+    }
+
+    private void resetAndExit()
     {
         todoField.setText(null);
         deadlineField.getEditor().setText(null);
-        personField.setText(null);
+        personCombobox.setValue(null);
         descriptionField.setText(null);
 
         TodoApp.getTodoFormStage().close();
@@ -86,7 +114,7 @@ public class TodoFormController implements Initializable
 
             todoData.setName(todoField.getText());
             todoData.setDeadline(deadlineField.getEditor().getText());
-            todoData.setPerson(personField.getText());
+            todoData.setPerson(personCombobox.getValue().getId());
             todoData.setDescription(descriptionField.getText());
             todoData.setGroup(groupCombobox.getValue().getId());
 
@@ -98,7 +126,7 @@ public class TodoFormController implements Initializable
         }
     }
 
-    public boolean isInputValid()
+    private boolean isInputValid()
     {
         boolean isValid = false;
 
@@ -128,13 +156,6 @@ public class TodoFormController implements Initializable
             {
                 errorMessage += "Das Datum muss im Format dd.MM.yyyy angegeben werden\n";
             }
-        }
-
-        String personFieldText = personField.getText();
-
-        if( personFieldText == null || personFieldText.isEmpty() )
-        {
-            errorMessage += "Zuständige Person ist ein Pflichtfeld\n";
         }
 
         if( errorMessage.isEmpty() )

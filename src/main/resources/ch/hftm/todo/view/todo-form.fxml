@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane prefHeight="512.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hftm.todo.controller.TodoFormController">
+<GridPane prefHeight="512.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hftm.todo.controller.TodoFormController">
     <padding>
         <Insets bottom="40.0" left="30.0" right="40.0" top="40.0" />
     </padding>
@@ -17,7 +17,6 @@
     <Label text="Deadline* : " GridPane.columnIndex="0" GridPane.rowIndex="1" />
    <DatePicker fx:id="deadlineField" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     <Label text="Zuständige Person* : " GridPane.columnIndex="0" GridPane.rowIndex="2" />
-    <TextField fx:id="personField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    <Label text="Gruppe* : " GridPane.rowIndex="3" />
    <ComboBox fx:id="groupCombobox" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
     <Label text="Beschreibung : " GridPane.columnIndex="0" GridPane.rowIndex="4" />
@@ -27,6 +26,7 @@
             <Insets bottom="20.0" top="49.0" />
         </GridPane.margin>
     </Button>
+   <ComboBox fx:id="personCombobox" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    <rowConstraints>
       <RowConstraints />
       <RowConstraints />

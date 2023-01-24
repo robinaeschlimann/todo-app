@@ -39,6 +39,16 @@ public class PersonCache implements IListener
         return new ArrayList<>( personCache.values() );
     }
 
+    public PersonData getPerson( int id )
+    {
+        if( personCache == null )
+        {
+            loadPersons();
+        }
+
+        return personCache.get( id );
+    }
+
     private void loadPersons()
     {
         personCache = PersonStore.getInstance().getPersons().stream()

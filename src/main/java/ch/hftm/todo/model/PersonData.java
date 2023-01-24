@@ -18,4 +18,10 @@ public class PersonData
     private String email;
     private String password;
     private int permission;
+
+    @Override
+    public String toString()
+    {
+        return getFirstname() + " " + getLastname();
+    }
 }

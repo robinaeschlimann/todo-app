@@ -25,7 +25,7 @@ public class PersonService implements IDataService<PersonData>
 
     @Override
     public PersonData get(int id) {
-        return null;
+        return PersonCache.getInstance().getPerson( id );
     }
 
     @Override
