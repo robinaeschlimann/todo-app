@@ -17,4 +17,5 @@ public class PersonData
     private String lastname;
     private String email;
     private String password;
+    private int permission;
 }

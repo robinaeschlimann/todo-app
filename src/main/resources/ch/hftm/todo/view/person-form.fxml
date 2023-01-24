@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane prefHeight="353.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hftm.todo.controller.PersonFormController">
+    <padding>
+        <Insets bottom="40.0" left="30.0" right="40.0" top="40.0" />
+    </padding>
+    <columnConstraints>
+        <ColumnConstraints halignment="RIGHT" maxWidth="Infinity" minWidth="61.0" prefWidth="117.6" />
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="Infinity" minWidth="200.0" prefWidth="402.4" />
+    </columnConstraints>
+   <Label text="Anrede* : " />
+   <ComboBox fx:id="salutationCombobox" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" />
+    <Label text="Vorname* : " GridPane.columnIndex="0" GridPane.rowIndex="1" />
+   <TextField fx:id="firstnameField" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label text="Nachname* : " GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <TextField fx:id="lastnameField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+   <Label text="Email* : " GridPane.rowIndex="3" />
+   <TextField prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <Label text="Passwort* : " GridPane.columnIndex="0" GridPane.rowIndex="4" />
+   <PasswordField prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+   <Label text="Berechtigung* : " GridPane.rowIndex="5" />
+   <ComboBox prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <Button fx:id="submitButton" defaultButton="true" onAction="#saveTodo" prefHeight="40" prefWidth="100" text="Speichern" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.rowSpan="1">
+        <GridPane.margin>
+            <Insets bottom="20.0" top="49.0" />
+        </GridPane.margin>
+    </Button>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints minHeight="10.0" prefHeight="40.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+   </rowConstraints>
+</GridPane>

@@ -72,8 +72,7 @@ public class TodoController implements Initializable, IListener
         List<Todo> todos = todoDatas.stream()
                 .filter( todoData -> group == ETodoGroup.ALL || todoData.getGroup() == group.getId() )
                 .sorted( new TodoComparator() )
-                .map(todoJson -> new Todo(todoJson.getId(), todoJson.getName(), todoJson.getDescription(),
-                        todoJson.getDeadline(), todoJson.getPerson(), todoJson.isDone()))
+                .map( Todo::new )
                 .collect(Collectors.toList());
 
         ObservableList<Todo> observableList = FXCollections.observableList( todos );
@@ -102,6 +101,18 @@ public class TodoController implements Initializable, IListener
 
     public void createTodo(ActionEvent actionEvent) throws IOException {
         openTodoFormStage( "Todo erfassen", null );
+    }
+
+    public void showPersons( ActionEvent actionEvent ) throws IOException
+    {
+        Stage stage = TodoApp.getTodoFormStage();
+        stage.setTitle( "Personen" );
+
+        FXMLLoader fxmlLoader = new FXMLLoader(TodoApp.class.getResource("view/person-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 800);
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void onGroupFilterChanged( ActionEvent event )

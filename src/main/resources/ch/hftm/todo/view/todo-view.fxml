@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hftm.todo.controller.TodoController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hftm.todo.controller.TodoController">
     <children>
         <BorderPane layoutX="191.0" layoutY="97.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -50,10 +50,11 @@
          <bottom>
             <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <buttons>
-                  <Button mnemonicParsing="false" onAction="#createTodo" text="Neu" />
+                  <Button fx:id="showPersonsButton" mnemonicParsing="false" onAction="#showPersons" text="Personen anzeigen" ButtonBar.buttonData="LEFT" />
+                  <Button mnemonicParsing="false" onAction="#createTodo" text="Neu" ButtonBar.buttonData="RIGHT" />
                </buttons>
                <padding>
-                  <Insets right="20.0" />
+                  <Insets left="20.0" right="20.0" />
                </padding>
             </ButtonBar>
          </bottom>

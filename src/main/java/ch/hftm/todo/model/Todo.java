@@ -18,14 +18,16 @@ public class Todo
     private Button editButton;
     private Button deleteButton;
 
-    public Todo(int id, String name, String description, String deadline, String person, boolean done) {
-        this.name = new SimpleStringProperty( name );
-        this.description = new SimpleStringProperty( description );
-        this.deadline = new SimpleStringProperty( deadline );
-        this.person = new SimpleStringProperty( person );
+    public Todo(TodoData todoData) {
+        int id = todoData.getId();
+        this.name = new SimpleStringProperty( todoData.getName() );
+        this.description = new SimpleStringProperty( todoData.getDescription() );
+        this.deadline = new SimpleStringProperty( todoData.getDeadline() );
+        this.person = new SimpleStringProperty( todoData.getPerson() );
 
         doneCheckBox = new CheckBox();
-        doneCheckBox.setSelected( done );
+        doneCheckBox.setSelected( todoData.isDone() );
+
         doneCheckBox.selectedProperty().addListener( new DoneChangedListener( id ) );
 
         editButton = new Button( "Bearbeiten" );

@@ -32,7 +32,7 @@ public class TodoStore
     {
         List<TodoData> todoJsons = new ArrayList<>();
 
-        File dir = new File("todos/");
+        File dir = new File("data/todos/");
 
         if( dir.isDirectory() && dir.listFiles() != null )
         {
