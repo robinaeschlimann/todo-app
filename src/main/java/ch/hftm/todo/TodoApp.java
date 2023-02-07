@@ -10,21 +10,23 @@ import java.io.IOException;
 
 public class TodoApp extends Application {
 
-    private static Stage defaultStage;
+    private static Stage todoStage;
     private static Stage todoFormStage;
     private static Stage personStage;
     private static Stage personFormStage;
+    private static Stage loginStage;
 
     @Override
     public void start(Stage stage) throws IOException {
-        defaultStage = stage;
+        loginStage = stage;
+        todoStage = new Stage();
         todoFormStage = new Stage();
         personStage = new Stage();
         personFormStage = new Stage();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(TodoApp.class.getResource("view/todo-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TodoApp.class.getResource("view/login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 600);
-        stage.setTitle("ToDo-App!");
+        stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
 
@@ -33,10 +35,6 @@ public class TodoApp extends Application {
 
     public static void main(String[] args) {
         launch();
-    }
-
-    public static Stage getDefaultStage() {
-        return defaultStage;
     }
 
     public static Stage getTodoFormStage() {
@@ -51,5 +49,13 @@ public class TodoApp extends Application {
     public static Stage getPersonFormStage()
     {
         return personFormStage;
+    }
+
+    public static Stage getLoginStage() {
+        return loginStage;
+    }
+
+    public static Stage getTodoStage() {
+        return todoStage;
     }
 }

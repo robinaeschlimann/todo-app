@@ -25,7 +25,7 @@
     <!-- Add Email Label -->
     <Label text="Email : " GridPane.columnIndex="0" GridPane.rowIndex="2" />
     <!-- Add Email Text Field -->
-    <TextField fx:id="emailIdField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="emailField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     <!-- Add Password Label -->
     <Label text="Passwort : " GridPane.columnIndex="0" GridPane.rowIndex="3" />
     <!-- Add Password Field -->

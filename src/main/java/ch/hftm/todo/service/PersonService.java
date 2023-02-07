@@ -51,4 +51,19 @@ public class PersonService implements IDataService<PersonData>
     {
         return PersonCache.getInstance().getNextFreeId();
     }
+
+    public PersonData getPerson( String email )
+    {
+        var persons = PersonCache.getInstance().getPersons();
+
+        if( persons != null )
+        {
+            return persons.stream()
+                    .filter( personData -> personData.getEmail().equals( email ) )
+                    .findFirst()
+                    .orElse( null );
+        }
+
+        return null;
+    }
 }

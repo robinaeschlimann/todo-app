@@ -121,21 +121,6 @@ public class TodoController implements Initializable, IListener
         showToDos( groupFilterCombobox.getValue() );
     }
 
-    public static void openTodoFormStage( String title, TodoData todoData ) throws IOException
-    {
-        // Stage mit UserData muss vor dem laden des fxml aufgerufen werden, da die Daten im initialize
-        // ausgelesen werden müssen
-        Stage stage = TodoApp.getTodoFormStage();
-        stage.setTitle( title );
-        stage.setUserData( todoData );
-
-        FXMLLoader fxmlLoader = new FXMLLoader(TodoApp.class.getResource(ControllerUtil.RESOURCE_TODO_FORM));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
-
-        stage.setScene(scene);
-        stage.show();
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
