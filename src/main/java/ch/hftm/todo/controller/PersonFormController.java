@@ -178,7 +178,9 @@ public class PersonFormController implements Initializable
         }
         else
         {
-            Pattern pattern = Pattern.compile( "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$" );
+            // Pattern for email
+            Pattern pattern = Pattern.compile( "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+" +
+                    "(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$" );
             Matcher matcher = pattern.matcher( email );
 
             if( !matcher.matches() )
@@ -205,7 +207,6 @@ public class PersonFormController implements Initializable
             alert.setHeaderText("Bitte korrigiere die ungültigen Felder.");
             alert.setContentText(errorMessage);
             alert.showAndWait();
-
         }
 
         return isValid;

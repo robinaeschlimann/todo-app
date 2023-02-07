@@ -5,11 +5,13 @@ import ch.hftm.todo.comparators.TodoComparator;
 import ch.hftm.todo.events.IEvent;
 import ch.hftm.todo.events.IListener;
 import ch.hftm.todo.events.TodoChangedEvent;
+import ch.hftm.todo.model.EPermission;
 import ch.hftm.todo.model.Todo;
 import ch.hftm.todo.model.TodoData;
 import ch.hftm.todo.model.ETodoGroup;
 import ch.hftm.todo.service.MessageService;
 import ch.hftm.todo.service.TodoService;
+import ch.hftm.todo.service.UserService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -56,6 +58,9 @@ public class TodoController implements Initializable, IListener
 
     @FXML
     ComboBox<ETodoGroup> groupFilterCombobox;
+
+    @FXML
+    Button showPersonsButton;
 
     protected void showToDos( ETodoGroup group )
     {
@@ -128,6 +133,16 @@ public class TodoController implements Initializable, IListener
 
         showToDos( ETodoGroup.ALL );
         loadFilter();
+
+        var user = UserService.getInstance().getLoggedInUser();
+
+        var permission = EPermission.getById( user.getPermission() );
+
+        // disable person-view for non-admins
+        if( permission != EPermission.ADMIN )
+        {
+            showPersonsButton.setVisible(false);
+        }
     }
 
     @Override
