@@ -4,9 +4,12 @@ import ch.hftm.todo.caches.PersonCache;
 import ch.hftm.todo.caches.TodoCache;
 import ch.hftm.todo.model.PersonData;
 import ch.hftm.todo.stores.PersonStore;
+import ch.hftm.todo.stores.TodoStore;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
+@Slf4j
 public class PersonService implements IDataService<PersonData>
 {
     private static final PersonService INSTANCE = new PersonService();
@@ -35,7 +38,13 @@ public class PersonService implements IDataService<PersonData>
 
     @Override
     public boolean delete(int id) {
-        return false;
+        if( !PersonStore.getInstance().deletePerson( id ) )
+        {
+            log.error( "Error while deleting todo!" );
+            return false;
+        }
+
+        return true;
     }
 
     public int getNextFreeId()

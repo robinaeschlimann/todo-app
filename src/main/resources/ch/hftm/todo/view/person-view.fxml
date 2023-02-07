@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hftm.todo.controller.PersonController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.hftm.todo.controller.PersonController">
    <children>
       <BorderPane prefHeight="800.0" prefWidth="1000.0">
          <bottom>
@@ -26,9 +26,9 @@
                   <TableColumn fx:id="salutationColumn" prefWidth="101.0" text="Anrede" />
                 <TableColumn fx:id="firstnameColumn" minWidth="0.0" prefWidth="238.0" text="Vorname" />
                 <TableColumn fx:id="lastnameColumn" prefWidth="231.0" text="Nachname" />
-                  <TableColumn fx:id="emailColumn" prefWidth="252.0" text="Email" />
-                  <TableColumn fx:id="userEditColumn" prefWidth="75.0" />
-                  <TableColumn fx:id="userDeleteColumn" prefWidth="75.0" />
+                  <TableColumn fx:id="emailColumn" prefWidth="226.0" text="Email" />
+                  <TableColumn fx:id="editColumn" prefWidth="106.5999755859375" />
+                  <TableColumn fx:id="deleteColumn" prefWidth="95.0" />
               </columns>
             </TableView>
          </center>

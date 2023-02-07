@@ -1,5 +1,5 @@
 package ch.hftm.todo.events;
 
-public interface IEvent
+public interface IEvent<T>
 {
 }

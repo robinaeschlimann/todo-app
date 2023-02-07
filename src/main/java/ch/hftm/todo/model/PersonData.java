@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PersonData
+public class PersonData implements IData
 {
     private int id;
     private int salutation;

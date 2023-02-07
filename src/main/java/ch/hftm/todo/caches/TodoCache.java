@@ -3,6 +3,7 @@ package ch.hftm.todo.caches;
 import ch.hftm.todo.events.IEvent;
 import ch.hftm.todo.events.IListener;
 import ch.hftm.todo.events.TodoChangedEvent;
+import ch.hftm.todo.model.IData;
 import ch.hftm.todo.model.TodoData;
 import ch.hftm.todo.service.MessageService;
 import ch.hftm.todo.stores.TodoStore;
@@ -87,11 +88,14 @@ public class TodoCache implements IListener
     {
         if( event instanceof TodoChangedEvent todoChangedEvent )
         {
-            switch ( todoChangedEvent.getType() )
+
+            TodoData todo = (TodoData) todoChangedEvent.todoData();
+
+            switch ( todoChangedEvent.type() )
             {
-                case CREATE, UPDATE -> updateCache( todoChangedEvent.getTodoData() );
-                case DELETE -> todoCache.remove( todoChangedEvent.getTodoData().getId() );
-                default -> log.warn( "EventType {} doesn't exist", todoChangedEvent.getType() );
+                case CREATE, UPDATE -> updateCache( todo );
+                case DELETE -> todoCache.remove( todo.getId() );
+                default -> log.warn( "EventType {} doesn't exist", todoChangedEvent.type() );
             }
         }
     }

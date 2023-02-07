@@ -75,9 +75,9 @@ public class PersonCache implements IListener
     public void onMessage(IEvent event) {
         if( event instanceof PersonChangedEvent changedEvent )
         {
-            var data = changedEvent.getPersonData();
+            var data = (PersonData) changedEvent.personData();
 
-            switch ( changedEvent.getType() )
+            switch ( changedEvent.type() )
             {
                 case CREATE, UPDATE -> personCache.put(data.getId(), data);
                 case DELETE -> personCache.remove( data.getId() );

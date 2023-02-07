@@ -5,9 +5,11 @@ import ch.hftm.todo.model.TodoData;
 import ch.hftm.todo.service.TodoService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+@Slf4j
 public record EditEventHandler(int todoId) implements EventHandler<ActionEvent>
 {
     @Override
@@ -17,9 +19,10 @@ public record EditEventHandler(int todoId) implements EventHandler<ActionEvent>
         try
         {
             TodoController.openTodoFormStage("Todo editieren", todoData);
-        } catch ( IOException e )
+        }
+        catch ( IOException e )
         {
-            e.printStackTrace();
+            log.error( "Error while opening todo form" );
         }
 
     }

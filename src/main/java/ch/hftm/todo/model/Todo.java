@@ -3,6 +3,8 @@ package ch.hftm.todo.model;
 import ch.hftm.todo.controller.eventhandlers.DeleteEventHandler;
 import ch.hftm.todo.controller.eventhandlers.EditEventHandler;
 import ch.hftm.todo.controller.listeners.DoneChangedListener;
+import ch.hftm.todo.events.TodoChangedEvent;
+import ch.hftm.todo.service.TodoService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
@@ -35,7 +37,7 @@ public class Todo
         editButton.setOnAction( new EditEventHandler( id ));
 
         deleteButton = new Button( "Löschen" );
-        deleteButton.setOnAction( new DeleteEventHandler( id ));
+        deleteButton.setOnAction(new DeleteEventHandler<>(id, TodoService.getInstance(), TodoChangedEvent.class));
     }
 
     public StringProperty getNameProperty()

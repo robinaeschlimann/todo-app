@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -48,6 +49,11 @@ public class PersonController implements Initializable, IListener
 
     @FXML
     TableColumn<Person, String> userDeleteColumn;
+    @FXML
+    TableColumn<Person, String> editColumn;
+
+    @FXML
+    TableColumn<Person, String> deleteColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -63,6 +69,8 @@ public class PersonController implements Initializable, IListener
         firstnameColumn.setCellValueFactory( cellValue -> cellValue.getValue().getFirstname() );
         lastnameColumn.setCellValueFactory( cellValue -> cellValue.getValue().getLastname() );
         emailColumn.setCellValueFactory( cellValue -> cellValue.getValue().getEmail() );
+        editColumn.setCellValueFactory( new PropertyValueFactory<>("editButton") );
+        deleteColumn.setCellValueFactory( new PropertyValueFactory<>( "deleteButton" ) );
 
         List<PersonData> personDatas = PersonService.getInstance().getAll();
 

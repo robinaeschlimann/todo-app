@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TodoData
+public class TodoData implements IData
 {
     private int id;
     private String name;
