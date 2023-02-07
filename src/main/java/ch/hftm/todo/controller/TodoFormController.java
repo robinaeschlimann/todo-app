@@ -48,10 +48,8 @@ public class TodoFormController implements Initializable
         // Load selected user
         Object userData = TodoApp.getTodoFormStage().getUserData();
 
-        if( userData instanceof TodoData )
+        if( userData instanceof TodoData todoData )
         {
-            TodoData todoData = (TodoData) userData;
-
             todoField.setText( todoData.getName() );
             deadlineField.getEditor().setText( todoData.getDeadline() );
             personCombobox.setValue( todoData.getPersonData() );

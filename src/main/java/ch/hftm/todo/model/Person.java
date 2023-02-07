@@ -1,6 +1,9 @@
 package ch.hftm.todo.model;
 
+import ch.hftm.todo.TodoApp;
+import ch.hftm.todo.controller.ControllerUtil;
 import ch.hftm.todo.controller.eventhandlers.DeleteEventHandler;
+import ch.hftm.todo.controller.eventhandlers.EditEventHandler;
 import ch.hftm.todo.events.PersonChangedEvent;
 import ch.hftm.todo.service.PersonService;
 import javafx.beans.property.SimpleStringProperty;
@@ -30,11 +33,11 @@ public class Person
         this.email = new SimpleStringProperty( data.getEmail() );
 
         this.editButton = new Button( "Bearbeiten" );
-        this.editButton.setOnAction( event -> {
-
-        });
+        this.editButton.setOnAction(new EditEventHandler<>(data.getId(), "Person bearbeiten",
+                ControllerUtil.RESOURCE_PERSON_FORM, TodoApp.getPersonFormStage(), PersonService.getInstance()));
 
         this.deleteButton = new Button( "Löschen" );
-        this.deleteButton.setOnAction(new DeleteEventHandler<>(data.getId(), PersonService.getInstance(), PersonChangedEvent.class) );
+        this.deleteButton.setOnAction(new DeleteEventHandler<>(data.getId(), PersonService.getInstance(),
+                PersonChangedEvent.class) );
     }
 }

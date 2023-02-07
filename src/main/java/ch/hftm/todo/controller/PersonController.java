@@ -97,7 +97,7 @@ public class PersonController implements Initializable, IListener
         stage.setTitle( title );
         stage.setUserData( personData );
 
-        FXMLLoader fxmlLoader = new FXMLLoader(TodoApp.class.getResource("view/person-form.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TodoApp.class.getResource(ControllerUtil.RESOURCE_PERSON_FORM));
         Scene scene = new Scene(fxmlLoader.load(), 800, 500);
 
         stage.setScene(scene);

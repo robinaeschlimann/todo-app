@@ -22,4 +22,17 @@ public enum EPermission
     {
         return text;
     }
+
+    public static EPermission getById( int id )
+    {
+        for( EPermission permission : values() )
+        {
+            if( permission.getId() == id )
+            {
+                return permission;
+            }
+        }
+
+        return null;
+    }
 }

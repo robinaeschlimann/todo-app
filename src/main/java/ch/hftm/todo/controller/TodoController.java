@@ -100,7 +100,8 @@ public class TodoController implements Initializable, IListener
     }
 
     public void createTodo(ActionEvent actionEvent) throws IOException {
-        openTodoFormStage( "Todo erfassen", null );
+        ControllerUtil.showView( "Todo erfassen", ControllerUtil.RESOURCE_TODO_FORM, TodoApp.getTodoFormStage(),
+                null );
     }
 
     public void showPersons( ActionEvent actionEvent ) throws IOException
@@ -128,7 +129,7 @@ public class TodoController implements Initializable, IListener
         stage.setTitle( title );
         stage.setUserData( todoData );
 
-        FXMLLoader fxmlLoader = new FXMLLoader(TodoApp.class.getResource("view/todo-form.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TodoApp.class.getResource(ControllerUtil.RESOURCE_TODO_FORM));
         Scene scene = new Scene(fxmlLoader.load(), 800, 500);
 
         stage.setScene(scene);

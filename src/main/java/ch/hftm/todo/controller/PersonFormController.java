@@ -47,6 +47,18 @@ public class PersonFormController implements Initializable
         initializeSalutationCombobox();
 
         initializePermissionCombobox();
+
+        Object userData = TodoApp.getPersonFormStage().getUserData();
+
+        if( userData instanceof PersonData personData )
+        {
+            firstnameField.setText( personData.getFirstname() );
+            lastnameField.setText( personData.getLastname() );
+            emailField.setText( personData.getEmail() );
+            passwordField.setText( personData.getPassword() );
+            salutationCombobox.setValue( ESalutation.getById( personData.getSalutation() ) );
+            permissionCombobox.setValue( EPermission.getById( personData.getPermission() ) );
+        }
     }
 
     private void initializePermissionCombobox() {
@@ -95,19 +107,32 @@ public class PersonFormController implements Initializable
 
         if( isInputValid() )
         {
-            PersonData personData = PersonData.builder()
-                    .id(PersonService.getInstance().getNextFreeId())
-                    .salutation(salutation)
-                    .firstname(firstname)
-                    .lastname(lastname)
-                    .email(email)
-                    .password(password)
-                    .permission(permission)
-                    .build();
+            EChangeType type = EChangeType.CREATE;
+
+            Object userData = TodoApp.getPersonFormStage().getUserData();
+            PersonData personData = null;
+
+            if( userData instanceof PersonData )
+            {
+                type = EChangeType.UPDATE;
+                personData = (PersonData) userData;
+            }
+            else
+            {
+                personData = new PersonData();
+                personData.setId( PersonService.getInstance().getNextFreeId() );
+            }
+
+            personData.setSalutation(salutation);
+            personData.setFirstname(firstname);
+            personData.setLastname(lastname);
+            personData.setEmail(email);
+            personData.setPassword(password);
+            personData.setPermission(permission);
 
             PersonService.getInstance().save(personData);
 
-            MessageService.getInstance().publishMessage(new PersonChangedEvent(personData, EChangeType.CREATE));
+            MessageService.getInstance().publishMessage(new PersonChangedEvent<>(personData, type));
 
             resetAndExit();
         }

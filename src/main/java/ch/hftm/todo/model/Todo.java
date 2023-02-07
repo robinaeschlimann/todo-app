@@ -1,5 +1,7 @@
 package ch.hftm.todo.model;
 
+import ch.hftm.todo.TodoApp;
+import ch.hftm.todo.controller.ControllerUtil;
 import ch.hftm.todo.controller.eventhandlers.DeleteEventHandler;
 import ch.hftm.todo.controller.eventhandlers.EditEventHandler;
 import ch.hftm.todo.controller.listeners.DoneChangedListener;
@@ -34,7 +36,8 @@ public class Todo
         doneCheckBox.selectedProperty().addListener( new DoneChangedListener( id ) );
 
         editButton = new Button( "Bearbeiten" );
-        editButton.setOnAction( new EditEventHandler( id ));
+        editButton.setOnAction( new EditEventHandler( id, "ToDo bearbeiten", ControllerUtil.RESOURCE_TODO_FORM,
+                TodoApp.getTodoFormStage(), TodoService.getInstance()));
 
         deleteButton = new Button( "Löschen" );
         deleteButton.setOnAction(new DeleteEventHandler<>(id, TodoService.getInstance(), TodoChangedEvent.class));
