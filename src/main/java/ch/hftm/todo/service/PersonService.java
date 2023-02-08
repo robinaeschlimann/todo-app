@@ -1,10 +1,10 @@
 package ch.hftm.todo.service;
 
 import ch.hftm.todo.caches.PersonCache;
-import ch.hftm.todo.caches.TodoCache;
+import ch.hftm.todo.model.EPermission;
 import ch.hftm.todo.model.PersonData;
+import ch.hftm.todo.service.exception.DeleteException;
 import ch.hftm.todo.stores.PersonStore;
-import ch.hftm.todo.stores.TodoStore;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -37,19 +37,29 @@ public class PersonService implements IDataService<PersonData>
     }
 
     @Override
-    public boolean delete(int id) {
-        if( !PersonStore.getInstance().deletePerson( id ) )
+    public void delete(int id) throws DeleteException {
+
+        if( !hasOtherAdministrators( id ) )
         {
-            log.error( "Error while deleting todo!" );
-            return false;
+           throw new DeleteException( "Es muss mindestens ein Administrator existieren." );
         }
 
-        return true;
+        if( !PersonStore.getInstance().deletePerson( id ) )
+        {
+            throw new DeleteException( "Fehler beim löschen einer Person" );
+        }
     }
 
     public int getNextFreeId()
     {
         return PersonCache.getInstance().getNextFreeId();
+    }
+
+    private boolean hasOtherAdministrators( int id )
+    {
+        return getAll().stream()
+                .anyMatch( personData -> EPermission.getById( personData.getPermission() ) == EPermission.ADMIN
+                        && personData.getId() != id );
     }
 
     public PersonData getPerson( String email )

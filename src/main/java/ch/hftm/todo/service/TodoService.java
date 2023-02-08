@@ -2,6 +2,7 @@ package ch.hftm.todo.service;
 
 import ch.hftm.todo.caches.TodoCache;
 import ch.hftm.todo.model.TodoData;
+import ch.hftm.todo.service.exception.DeleteException;
 import ch.hftm.todo.stores.TodoStore;
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,14 +44,12 @@ public class TodoService implements IDataService<TodoData>
     }
 
     @Override
-    public boolean delete( int todoId )
+    public void delete(int todoId ) throws DeleteException
     {
         if( !TodoStore.getInstance().deleteTodo( todoId ) )
         {
-            log.error( "Error while deleting todo!" );
-            return false;
+            throw new DeleteException( "Fehler beim Löschen des ToDo-Eintrags" );
         }
 
-        return true;
     }
 }

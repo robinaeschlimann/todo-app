@@ -36,9 +36,9 @@ public class LoginController implements Initializable
         String email = emailField.getText();
         String password = passwordField.getText();
 
-        var personData = PersonService.getInstance().getPerson( emailField.getText() );
+        var personData = PersonService.getInstance().getPerson( email );
 
-        if( personData == null )
+        if( personData == null || !personData.getPassword().equals( password ) )
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Login fehlgeschlagen");

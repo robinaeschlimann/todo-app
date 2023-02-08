@@ -1,5 +1,7 @@
 package ch.hftm.todo.service;
 
+import ch.hftm.todo.service.exception.DeleteException;
+
 import java.util.List;
 
 public interface IDataService<T>
@@ -10,5 +12,5 @@ public interface IDataService<T>
 
     void save( T data );
 
-    boolean delete( int id );
+    void delete(int id ) throws DeleteException;
 }
