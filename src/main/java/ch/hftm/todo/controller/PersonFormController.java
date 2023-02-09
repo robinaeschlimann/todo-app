@@ -187,6 +187,10 @@ public class PersonFormController implements Initializable
             {
                 errorMessage += "Das Format des Emails stimmt nicht\n";
             }
+            else if( doesEmailExist( email ) )
+            {
+                errorMessage += "Diese Email existiert bereits\n";
+            }
         }
 
         String password = passwordField.getText();
@@ -210,5 +214,10 @@ public class PersonFormController implements Initializable
         }
 
         return isValid;
+    }
+
+    private boolean doesEmailExist(String email)
+    {
+        return PersonService.getInstance().getPerson( email ) != null;
     }
 }
