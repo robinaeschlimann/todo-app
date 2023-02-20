@@ -6,3 +6,5 @@ target
 /.idea/
 
 ToDo.iml
+
+/logs/application.log
