@@ -11,13 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 
 @Slf4j
-public record EditEventHandler<T extends IData>(int todoId, String title, String resource, Stage stage,
-                               IDataService<T> service)
+public record EditEventHandler<T extends IData>(int dataId, String title, String resource, Stage stage,
+                                                IDataService<T> service)
         implements EventHandler<ActionEvent>
 {
     @Override
     public void handle(ActionEvent event) {
-        T data = service.get(todoId);
+        T data = service.get(dataId);
 
         try
         {

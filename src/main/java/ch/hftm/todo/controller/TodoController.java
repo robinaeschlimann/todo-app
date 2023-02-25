@@ -115,7 +115,7 @@ public class TodoController implements Initializable, IListener
         stage.setTitle( "Personen" );
 
         FXMLLoader fxmlLoader = new FXMLLoader(TodoApp.class.getResource("view/person-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 800);
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
 
         stage.setScene(scene);
         stage.show();
